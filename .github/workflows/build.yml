@@ -40,19 +40,19 @@ jobs:
     - name: Clonar Device Tree
       run: |
         cd twrp
-        git clone https://github.com/voyagervoyager880-oss/android_device_samsung_a11.git device/samsung/a11
+        git clone https://github.com/voyagervoyager880-oss/android_device_samsung_a11.git device/samsung/a11q
 
     - name: Compilar recovery.img
       run: |
         cd twrp
         source build/envsetup.sh
-        lunch omni_a11-eng || lunch twrp_a11-eng
+        lunch omni_a11q-eng 
         mka recoveryimage -j$(nproc --all)
 
     - name: Publicar Release
       uses: softprops/action-gh-release@v1
       with:
-        files: twrp/out/target/product/a11/recovery.img
+        files: twrp/out/target/product/a11q/recovery.img
         name: TWRP SM-A115M
         tag_name: twrp-${{ github.run_id }}
       env:
